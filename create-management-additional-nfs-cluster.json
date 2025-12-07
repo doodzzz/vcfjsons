@@ -1,0 +1,217 @@
+{
+  "domainId": "1577e1ea-95fa-4ad4-ba59-ced62ac77e00",
+  "computeSpec": {
+    "clusterSpecs": [
+      {
+        "name": " brm-m01-cluster-002",
+        "hostSpecs": [
+          {
+            "id": "f6bca925-a73f-471d-b361-c429f30d5cf1",
+            "licenseKey": "<LICENSE KEY HERE>",
+            "hostNetworkSpec": {
+              "vmNics": [
+                {
+                  "id": "vmnic2",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink1"
+                },
+                {
+                  "id": "vmnic4",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "37c315cd-0eef-4bac-9df7-1a88bec521d8",
+            "licenseKey": "<LICENSE KEY HERE>",
+            "hostNetworkSpec": {
+              "vmNics": [
+                {
+                  "id": "vmnic2",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink1"
+                },
+                {
+                  "id": "vmnic4",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "cb9d5667-0ffa-48fb-98a4-0edc5dba4b5c",
+            "licenseKey": "<LICENSE KEY HERE>",
+            "hostNetworkSpec": {
+              "vmNics": [
+                {
+                  "id": "vmnic2",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink1"
+                },
+                {
+                  "id": "vmnic4",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink2"
+                }
+              ]
+            }
+          },
+          {
+            "id": "e87afbb7-2145-4682-b376-488d78410911",
+            "licenseKey": "<LICENSE KEY HERE>",
+            "hostNetworkSpec": {
+              "vmNics": [
+                {
+                  "id": "vmnic2",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink1"
+                },
+                {
+                  "id": "vmnic4",
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplink" : "uplink2"
+                }
+              ]
+            }
+          }
+        ],
+        "datastoreSpec": {
+          "nfsDatastoreSpecs": [
+            {
+              "nasVolume": {
+                "serverName": [
+                  "192.14.37.200"
+                ],
+                "path": "/volume1/P-NFS",
+                "readOnly": false
+              },
+              "datastoreName": "brm-m01-cluster-002-nfs"
+            }
+          ]
+        },
+        "networkSpec": {
+          "vdsSpecs": [
+            {
+              "name": "brm-m01-cluster-002-vds-001",
+              "mtu": 9190,
+              "portGroupSpecs": [
+                {
+                  "name": "SDDC-BRM-DPortGroup-cls02-Mgmt",
+                  "teamingPolicy": "loadbalance_loadbased",
+                  "transportType": "MANAGEMENT",
+                  "activeUplinks": [
+                    "uplink1",
+                    "uplink2"
+                  ]
+                },
+                {
+                  "name": "SDDC-BRM-DPortGroup-cls02-vMotion",
+                  "teamingPolicy": "loadbalance_loadbased",
+                  "transportType": "VMOTION",
+                  "activeUplinks": [
+                    "uplink1",
+                    "uplink2"
+                  ]
+                },
+                {
+                  "name": "SDDC-BRM-DPortGroup-cls02-NFS",
+                  "teamingPolicy": "loadbalance_loadbased",
+                  "transportType": "NFS",
+                  "activeUplinks": [
+                    "uplink1",
+                    "uplink2"
+                  ]
+                }
+              ],
+              "nsxtSwitchConfig": {
+                "hostSwitchOperationalMode": "ENS_INTERRUPT",
+                "transportZones": [
+                  {
+                    "name": "brm-m01-tz-vlan02",
+                    "transportType": "VLAN"
+                  },
+                  {
+                    "name": "brm-m01-tz-overlay01",
+                    "transportType": "OVERLAY"
+                  }
+                ]
+              }
+            }
+          ],
+          "nsxClusterSpec": {
+            "nsxTClusterSpec": {
+              "uplinkProfiles": [
+                {
+                  "name": "brm-m01-cluster-002-vds-001-uplink-profile",
+                  "teamings": [
+                    {
+                      "policy": "LOADBALANCE_SRCID",
+                      "activeUplinks": [
+                        "uplink-1",
+                        "uplink-2"
+                      ],
+                      "standByUplinks": [],
+                      "activeUplink": []
+                    }
+                  ],
+                  "transportVlan": "1438"
+                }
+              ],
+              "ipAddressPoolsSpec": [
+                {
+                  "name": "brm-m01-cl02-tep01",
+                  "description": "Management Cluster 02 TEP Pool",
+                  "subnets": [
+                    {
+                      "cidr": "192.14.38.0/24",
+                      "gateway": "192.14.38.254",
+                      "ipAddressPoolRanges": [
+                        {
+                          "start": "192.14.38.10",
+                          "end": "192.14.38.100"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "networkProfiles": [
+            {
+              "name": "networkConfigProfile",
+              "isDefault": true,
+              "nsxtHostSwitchConfigs": [
+                {
+                  "vdsName": "brm-m01-cluster-002-vds-001",
+                  "uplinkProfileName": "brm-m01-cluster-002-vds-001-uplink-profile",
+                  "vdsUplinkToNsxUplink": [
+                    {
+                      "vdsUplinkName": "uplink1",
+                      "nsxUplinkName": "uplink-1"
+                    },
+                    {
+                      "vdsUplinkName": "uplink2",
+                      "nsxUplinkName": "uplink-2"
+                    }
+                  ],
+                  "ipAddressPoolName": "brm-m01-cl02-tep01"
+                }
+              ]
+            }
+          ]
+        },
+        "advancedOptions": {
+          "evcMode": "",
+          "highAvailability": {
+            "enabled": true
+          }
+        },
+        "clusterImageId": "0522b552-9140-4455-8890-095ecd8ea857"
+      }
+    ]
+  }
+}
