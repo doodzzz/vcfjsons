@@ -1,2 +1,1 @@
-# vcfjsons
-Random Collection of VCF JSONs
+# VCF JSON files and/or Scripts to Automate Them
